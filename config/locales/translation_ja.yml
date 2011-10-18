@@ -17,4 +17,5 @@ ja:
         position: 位置
         start_date: 開始日
         end_date: 終了日
+        url: URL
         draft: 下書き

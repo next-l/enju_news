@@ -17,4 +17,5 @@ en:
         position: Position
         start_date: Start date
         end_date: End date
+        url: URL
         draft: Draft
