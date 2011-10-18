@@ -4,17 +4,23 @@
 
 <table class="index">
   <tr>
-    <th><%= t('activerecord.attributes.news_post.start_date') -%></th>
     <th><%= t('activerecord.attributes.news_post.title') -%></th>
+    <th><%= t('activerecord.models.user') -%></th>
+    <th><%= t('page.date') -%></th>
+    <th><%= t('role.required_role') -%></th>
     <th></th>
   </tr>
 
 <%- @news_posts.each do |news_post| -%>
   <tr class="line<%= cycle("0", "1") -%>">
-    <td><%=l news_post.start_date, :format => :only_date -%></td>
+    <td><%= link_to h(news_post.title), news_post -%></td>
+    <td><%= link_to h(news_post.user.username), user_path(news_post.user.username) -%></td>
     <td>
-      <%= link_to news_post.title, news_post.url %>
+      <%= l(news_post.start_date) -%>
+      -
+      <%= l(news_post.end_date) -%>
     </td>
+    <td><%= news_post.required_role.display_name.localize -%></td>
     <td>
       <% if can? :destroy, news_post %>
         <%= link_to t('page.edit'), edit_news_post_path(news_post) -%>

@@ -1,5 +1,4 @@
 class NewsPostsController < ApplicationController
-  before_filter :check_client_ip_address, :except => [:index, :show]
   load_and_authorize_resource
   before_filter :prepare_options, :only => [:new, :edit]
 
@@ -23,8 +22,6 @@ class NewsPostsController < ApplicationController
   # GET /news_posts/1
   # GET /news_posts/1.xml
   def show
-    #@news_post = NewsPost.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @news_post }
@@ -44,7 +41,6 @@ class NewsPostsController < ApplicationController
 
   # GET /news_posts/1/edit
   def edit
-    #@news_post = NewsPost.find(params[:id])
   end
 
   # POST /news_posts
@@ -69,8 +65,6 @@ class NewsPostsController < ApplicationController
   # PUT /news_posts/1
   # PUT /news_posts/1.xml
   def update
-    #@news_post = NewsPost.find(params[:id])
-
     respond_to do |format|
       if @news_post.update_attributes(params[:news_post])
         flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.news_post'))
@@ -87,7 +81,6 @@ class NewsPostsController < ApplicationController
   # DELETE /news_posts/1
   # DELETE /news_posts/1.xml
   def destroy
-    #@news_post = NewsPost.find(params[:id])
     @news_post.destroy
 
     respond_to do |format|

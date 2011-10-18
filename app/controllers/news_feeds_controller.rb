@@ -1,12 +1,11 @@
 class NewsFeedsController < ApplicationController
-  before_filter :check_client_ip_address
   load_and_authorize_resource
   cache_sweeper :news_feed_sweeper, :only => [:create, :update, :destroy]
 
   # GET /news_feeds
   # GET /news_feeds.xml
   def index
-    @news_feeds = NewsFeed.paginate(:all, :order => :position, :page => params[:page])
+    @news_feeds = NewsFeed.paginate(:order => :position, :page => params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @news_feeds }
@@ -16,7 +15,6 @@ class NewsFeedsController < ApplicationController
   # GET /news_feeds/1
   # GET /news_feeds/1.xml
   def show
-    @news_feed = NewsFeed.find(params[:id])
     if params[:mode] == 'force_reload'
       expire_cache
     end
@@ -40,7 +38,6 @@ class NewsFeedsController < ApplicationController
 
   # GET /news_feeds/1/edit
   def edit
-    @news_feed = NewsFeed.find(params[:id])
   end
 
   # POST /news_feeds
@@ -49,7 +46,7 @@ class NewsFeedsController < ApplicationController
     @news_feed = NewsFeed.new(params[:news_feed])
 
     respond_to do |format|
-      if @news_feed.save!
+      if @news_feed.save
         flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.news_feed'))
         format.html { redirect_to(@news_feed) }
         format.xml  { render :xml => @news_feed, :status => :created, :location => @news_feed }
@@ -63,8 +60,6 @@ class NewsFeedsController < ApplicationController
   # PUT /news_feeds/1
   # PUT /news_feeds/1.xml
   def update
-    @news_feed = NewsFeed.find(params[:id])
-
     if params[:position]
       @news_feed.insert_at(params[:position])
       redirect_to news_feeds_url
@@ -89,7 +84,6 @@ class NewsFeedsController < ApplicationController
   # DELETE /news_feeds/1
   # DELETE /news_feeds/1.xml
   def destroy
-    @news_feed = NewsFeed.find(params[:id])
     @news_feed.destroy
 
     respond_to do |format|

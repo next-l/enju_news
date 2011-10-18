@@ -19,13 +19,8 @@ xml.rss('version' => "2.0",
     if @news_posts
       @news_posts.each do |news_post|
         xml.item do
-          if @locale == :ja
-            xml.title(news_post.title)
-            xml.description(news_post.body)
-          else
-            xml.title(news_post.title)
-            xml.description(news_post.body)
-          end
+          xml.title(news_post.title)
+          xml.description(news_post.body)
           # rfc822
           xml.pubDate h(news_post.created_at.utc.iso8601)
           xml.link news_post_url(news_post)

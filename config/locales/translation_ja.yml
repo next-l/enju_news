@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      news_feed: お知らせのフィード
+      news_post: 図書館からのお知らせ
+    attributes:
+      news_feed:
+        title: タイトル
+        url: URL
+        body: 本文
+        note: 注記
+        position: 位置
+      news_post:
+        title: タイトル
+        body: 本文
+        note: 注記
+        position: 位置
+        start_date: 開始日
+        end_date: 終了日
+        draft: 下書き
