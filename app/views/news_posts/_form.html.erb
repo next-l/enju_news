@@ -1,0 +1,23 @@
+<%= form_for(@news_post) do |f| -%>
+  <%= f.error_messages -%>
+  <p>
+    <%= f.label t('activerecord.attributes.news_post.title') -%><br />
+    <%= f.text_field :title, :class => 'resource_title' -%>
+  </p>
+  <p>
+    <%= f.label t('activerecord.attributes.news_post.body') -%><br />
+    <%= f.text_area :body, :class => 'resource_textarea' -%>
+  </p>
+  <p>
+    <%= f.label :news, t('activerecord.attributes.news_post.url') -%>
+    <%= f.url_field :url, :class => 'resource_url' -%>
+  </p>
+  <p>
+    <%= f.label :news, t('activerecord.attributes.news_post.start_date') -%>
+    <%= f.date_select :start_date -%>
+  </p>
+  <p>
+    <%= f.submit -%>
+  </p>
+<%- end -%>
+<%= javascript_tag("$('#news_post_title').focus()") -%>
