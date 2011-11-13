@@ -1,15 +1,14 @@
 <%= form_for(@news_feed) do |f| -%>
   <%= f.error_messages -%>
-  <p>
+  <div class="field">
     <%= f.label t('activerecord.attributes.news_feed.title') -%><br />
     <%= f.text_field :title, :class => 'resource_title' -%>
-  </p>
-  <p>
+  </div>
+  <div class="field">
     <%= f.label t('activerecord.attributes.news_feed.url') -%><br />
     <%= f.url_field :url, :class => 'resource_url' -%>
-  </p>
-  <p>
+  </div>
+  <div class="actions">
     <%= f.submit -%>
-  </p>
+  </div>
 <%- end -%>
-<%= javascript_tag("$('#news_feed_title').focus()") -%>
