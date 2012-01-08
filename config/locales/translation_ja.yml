@@ -19,3 +19,10 @@ ja:
         end_date: 終了日
         url: URL
         draft: 下書き
+
+  page:
+    news: "お知らせ"
+  news_post:
+    library_group_news_post: "%{library_group_name} からのお知らせ"
+  news_feed:
+    failed_to_fetch_feed: フィードの読み込みに失敗しました。

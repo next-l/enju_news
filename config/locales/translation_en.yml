@@ -19,3 +19,10 @@ en:
         end_date: End date
         url: URL
         draft: Draft
+
+  page:
+    news: "News"
+  news_post:
+    library_group_news_post: "News from %{library_group_name}"
+  news_feed:
+    failed_to_fetch_feed: Failed to fetch feeds.
