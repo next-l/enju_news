@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "devise"
   s.add_dependency "cancan"
   s.add_dependency "will_paginate", "~> 3.0"
+  s.add_dependency "acts_as_list", "~> 0.1.5"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'
