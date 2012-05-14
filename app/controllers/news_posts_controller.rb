@@ -3,7 +3,7 @@ class NewsPostsController < ApplicationController
   before_filter :prepare_options, :only => [:new, :edit]
 
   # GET /news_posts
-  # GET /news_posts.xml
+  # GET /news_posts.json
   def index
     if current_user.try(:has_role?, 'Librarian')
       @news_posts = NewsPost.paginate(:order => :position, :page => params[:page])
@@ -13,29 +13,29 @@ class NewsPostsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @news_posts }
+      format.json { render :json => @news_posts }
       format.rss  { render :layout => false }
       format.atom
     end
   end
 
   # GET /news_posts/1
-  # GET /news_posts/1.xml
+  # GET /news_posts/1.json
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @news_post }
+      format.json { render :json => @news_post }
     end
   end
 
   # GET /news_posts/new
-  # GET /news_posts/new.xml
+  # GET /news_posts/new.json
   def new
     @news_post = NewsPost.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @news_post }
+      format.json { render :json => @news_post }
     end
   end
 
@@ -44,7 +44,7 @@ class NewsPostsController < ApplicationController
   end
 
   # POST /news_posts
-  # POST /news_posts.xml
+  # POST /news_posts.json
   def create
     @news_post = NewsPost.new(params[:news_post])
     @news_post.user = current_user
@@ -53,39 +53,39 @@ class NewsPostsController < ApplicationController
       if @news_post.save
         flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.news_post'))
         format.html { redirect_to(@news_post) }
-        format.xml  { render :xml => @news_post, :status => :created, :location => @news_post }
+        format.json { render :json => @news_post, :status => :created, :location => @news_post }
       else
         prepare_options
         format.html { render :action => "new" }
-        format.xml  { render :xml => @news_post.errors, :status => :unprocessable_entity }
+        format.json { render :json => @news_post.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # PUT /news_posts/1
-  # PUT /news_posts/1.xml
+  # PUT /news_posts/1.json
   def update
     respond_to do |format|
       if @news_post.update_attributes(params[:news_post])
         flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.news_post'))
         format.html { redirect_to(@news_post) }
-        format.xml  { head :ok }
+        format.json { head :no_content }
       else
         prepare_options
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @news_post.errors, :status => :unprocessable_entity }
+        format.json { render :json => @news_post.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # DELETE /news_posts/1
-  # DELETE /news_posts/1.xml
+  # DELETE /news_posts/1.json
   def destroy
     @news_post.destroy
 
     respond_to do |format|
       format.html { redirect_to(news_posts_url) }
-      format.xml  { head :ok }
+      format.json { head :no_content }
     end
   end
 
