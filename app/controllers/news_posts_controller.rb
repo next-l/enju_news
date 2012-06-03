@@ -6,9 +6,9 @@ class NewsPostsController < ApplicationController
   # GET /news_posts.json
   def index
     if current_user.try(:has_role?, 'Librarian')
-      @news_posts = NewsPost.paginate(:order => :position, :page => params[:page])
+      @news_posts = NewsPost.page(params[:page])
     else
-      @news_posts = NewsPost.published.paginate(:order => :position, :page => params[:page])
+      @news_posts = NewsPost.published.page(params[:page])
     end
 
     respond_to do |format|
@@ -51,8 +51,7 @@ class NewsPostsController < ApplicationController
 
     respond_to do |format|
       if @news_post.save
-        flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.news_post'))
-        format.html { redirect_to(@news_post) }
+        format.html { redirect_to(@news_post, :notice => t('controller.successfully_created', :model => t('activerecord.models.news_post'))) }
         format.json { render :json => @news_post, :status => :created, :location => @news_post }
       else
         prepare_options
@@ -65,10 +64,14 @@ class NewsPostsController < ApplicationController
   # PUT /news_posts/1
   # PUT /news_posts/1.json
   def update
+    if params[:move]
+      move_position(@news_post, params[:move])
+      return
+    end
+
     respond_to do |format|
       if @news_post.update_attributes(params[:news_post])
-        flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.news_post'))
-        format.html { redirect_to(@news_post) }
+        format.html { redirect_to(@news_post, :notice => t('controller.successfully_updated', :model => t('activerecord.models.news_post'))) }
         format.json { head :no_content }
       else
         prepare_options

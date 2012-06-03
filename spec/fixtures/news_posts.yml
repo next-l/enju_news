@@ -1,0 +1,13 @@
+news_post_00001:
+  id: 1
+  title: お知らせ
+  body: お知らせの内容
+  user_id: 1
+  position: 1
+
+news_post_00002:
+  id: 2
+  title: お知らせ
+  body: お知らせの内容
+  user_id: 1
+  position: 2

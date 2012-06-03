@@ -1,6 +1,7 @@
 class NewsFeed < ActiveRecord::Base
+  attr_accessible :title, :url
   include ExpireEditableFragment
-  default_scope :order => "position"
+  default_scope :order => "news_feeds.position"
   belongs_to :library_group, :validate => true
 
   validates_presence_of :title, :url, :library_group
@@ -19,6 +20,7 @@ class NewsFeed < ActiveRecord::Base
   def expire_cache
     expire_fragment_cache
     Rails.cache.delete('news_feed_all')
+    true
   end
 
   def expire_fragment_cache
@@ -26,8 +28,6 @@ class NewsFeed < ActiveRecord::Base
       Rails.cache.delete("views/news_feed_content_#{id}_#{role.name}")
       logger.info "#{Time.zone.now} feed reloaded! : #{url}"
     end
-  rescue
-    logger.info "#{Time.zone.now} reloading feed failed! : #{url}"
   end
 
   def content(clear_cache = false)
@@ -48,7 +48,8 @@ class NewsFeed < ActiveRecord::Base
           f.read
         end
         if rss = RSS::Parser.parse(feed, false)
-          self.update_attributes({:body => feed})
+          self.body = feed
+          save!
         end
       end
     rescue StandardError, Timeout::Error
@@ -63,7 +64,7 @@ class NewsFeed < ActiveRecord::Base
         rss = RSS::Parser.parse(body)
       rescue RSS::InvalidRSSError
         rss = RSS::Parser.parse(body, false)
-      rescue #RSS::NotWellFormedError
+      rescue RSS::NotWellFormedError, TypeError
         nil
       end
     #end

@@ -1,0 +1,11 @@
+news_feed_00001:
+  id: 1
+  title: NDL
+  url: http://iss.ndl.go.jp/information/feed/
+  position: 1
+
+news_feed_00002:
+  id: 2
+  title: invalid feed
+  url: http://example.com/invalid_feed
+  position: 2

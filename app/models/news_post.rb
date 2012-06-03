@@ -1,4 +1,5 @@
 class NewsPost < ActiveRecord::Base
+  attr_accessible :title, :body
   scope :published, where(:draft => false)
   belongs_to :user
   belongs_to :required_role, :class_name => 'Role', :foreign_key => 'required_role_id', :validate => true

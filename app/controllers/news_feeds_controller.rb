@@ -5,7 +5,7 @@ class NewsFeedsController < ApplicationController
   # GET /news_feeds
   # GET /news_feeds.json
   def index
-    @news_feeds = NewsFeed.paginate(:order => :position, :page => params[:page])
+    @news_feeds = NewsFeed.page(params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @news_feeds }
@@ -60,9 +60,8 @@ class NewsFeedsController < ApplicationController
   # PUT /news_feeds/1
   # PUT /news_feeds/1.json
   def update
-    if params[:position]
-      @news_feed.insert_at(params[:position])
-      redirect_to news_feeds_url
+    if params[:move]
+      move_position(@news_feed, params[:move])
       return
     end
     if params[:mode] == 'force_reload'

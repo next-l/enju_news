@@ -1,5 +1,5 @@
 class CreateNewsPosts < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :news_posts do |t|
       t.text :title
       t.text :body
@@ -14,9 +14,5 @@ class CreateNewsPosts < ActiveRecord::Migration
       t.timestamps
     end
     add_index :news_posts, :user_id
-  end
-
-  def self.down
-    drop_table :news_posts
   end
 end
