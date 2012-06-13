@@ -22,7 +22,7 @@
     <td>
       <%- if can? :destroy, news_feed -%>
         <%= link_to t('page.edit'), edit_news_feed_path(news_feed) -%>
-        <%= link_to t('page.destroy'), news_feed, :confirm => t('page.are_you_sure'), :method => :delete -%>
+        <%= link_to t('page.destroy'), news_feed, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
       <%- end -%>
     </td>
   </tr>
