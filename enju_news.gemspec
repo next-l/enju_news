@@ -17,13 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 3.2"
-  s.add_dependency "devise"
-  s.add_dependency "cancan"
-  s.add_dependency "will_paginate", "~> 3.0"
-  s.add_dependency "acts_as_list", "~> 0.1.6"
-  s.add_dependency "attribute_normalizer"
-  s.add_dependency "addressable"
-  s.add_dependency "friendly_id"
+  s.add_dependency "enju_core"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails"
