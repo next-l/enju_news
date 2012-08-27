@@ -92,6 +92,7 @@ class NewsPostsController < ApplicationController
     end
   end
 
+  private
   def prepare_options
     @roles = Role.all
   end
