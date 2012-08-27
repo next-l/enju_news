@@ -15,7 +15,7 @@
   <!--
   <div class="field">
     <%= f.label t('activerecord.models.user') -%><br />
-    <%= link_to h(@news_post.user.username), user_path(@news_post.user.username) -%>
+    <%= link_to h(@news_post.user.username), @news_post.user -%>
   </div>
   <div class="field">
     <%= f.label t('role.required_role') -%>
