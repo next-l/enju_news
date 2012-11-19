@@ -29,3 +29,18 @@ describe NewsFeed do
     NewsFeed.fetch_feeds.should be_true
   end
 end
+
+# == Schema Information
+#
+# Table name: news_feeds
+#
+#  id               :integer          not null, primary key
+#  library_group_id :integer          default(1), not null
+#  title            :string(255)
+#  url              :string(255)
+#  body             :text
+#  position         :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
