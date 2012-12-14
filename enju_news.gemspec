@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = EnjuNews::VERSION
   s.authors     = ["Kosuke Tanabe"]
   s.email       = ["tanabe@mwr.mediacom.keio.ac.jp"]
-  s.homepage    = "https://github.com/nabeta/enju_news"
+  s.homepage    = "https://github.com/next-l/enju_news"
   s.summary     = "enju_news plugin"
   s.description = "News article management for Next-L Enju"
 
