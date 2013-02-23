@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 3.2"
-  s.add_dependency "enju_core", "~> 0.1.1.pre2"
+  s.add_dependency "enju_core", "~> 0.1.1.pre3"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails"
