@@ -34,9 +34,11 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.extend ControllerMacros, :type => :controller
-
-  config.extend VCR::RSpec::Macros
 end
 
 FactoryGirl.definition_file_paths << "#{::Rails.root}/../../spec/factories"
 FactoryGirl.find_definitions
+
+VCR.configure do |c|
+  c.allow_http_connections_when_no_cassette = true
+end
