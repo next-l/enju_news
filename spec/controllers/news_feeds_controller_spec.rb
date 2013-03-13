@@ -33,7 +33,7 @@ describe NewsFeedsController do
     describe "When logged in as User" do
       login_user
 
-      it "assigns all news_feeds as @news_feeds" do
+      it "assigns empty as @news_feeds" do
         get :index
         assigns(:news_feeds).should be_empty
         response.should be_forbidden
