@@ -43,5 +43,4 @@ module Dummy
   end
 end
 
-require 'master_model'
-require 'url_validator'
+require 'enju_leaf'
