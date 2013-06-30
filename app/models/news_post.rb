@@ -10,6 +10,11 @@ class NewsPost < ActiveRecord::Base
 
   acts_as_list
 
+  searchable do
+    text :title, :body
+    time :start_date, :end_date
+  end
+
   def self.per_page
     10
   end
