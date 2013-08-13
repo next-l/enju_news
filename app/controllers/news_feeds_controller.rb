@@ -1,6 +1,6 @@
 class NewsFeedsController < ApplicationController
   load_and_authorize_resource
-  cache_sweeper :news_feed_sweeper, :only => [:create, :update, :destroy]
+  #cache_sweeper :news_feed_sweeper, :only => [:create, :update, :destroy]
 
   # GET /news_feeds
   # GET /news_feeds.json
