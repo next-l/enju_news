@@ -1,5 +1,4 @@
 class NewsPost < ActiveRecord::Base
-  attr_accessible :title, :body
   scope :published, -> {where(:draft => false)}
   default_scope {order('news_posts.start_date DESC')}
   belongs_to :user
