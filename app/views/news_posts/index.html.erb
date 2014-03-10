@@ -22,7 +22,7 @@
     </td>
     <td><%= news_post.required_role.display_name.localize -%></td>
     <td>
-      <% if can? :delete, news_post %>
+      <% if policy(news_post).destroy? %>
         <%= link_to t('page.edit'), edit_news_post_path(news_post) -%>
         <%= link_to t('page.destroy'), news_post, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
       <% end %>
