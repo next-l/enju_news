@@ -1,6 +1,6 @@
 class NewsFeedsController < ApplicationController
   load_and_authorize_resource
-  cache_sweeper :news_feed_sweeper, :only => [:create, :update, :destroy]
+  cache_sweeper :news_feed_sweeper, only: [:create, :update, :destroy]
 
   # GET /news_feeds
   # GET /news_feeds.json
@@ -8,7 +8,7 @@ class NewsFeedsController < ApplicationController
     @news_feeds = NewsFeed.page(params[:page])
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @news_feeds }
+      format.json { render json: @news_feeds }
     end
   end
 
@@ -21,7 +21,7 @@ class NewsFeedsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @news_feed }
+      format.json { render json: @news_feed }
     end
   end
 
@@ -32,7 +32,7 @@ class NewsFeedsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @news_feed }
+      format.json { render json: @news_feed }
     end
   end
 
@@ -47,12 +47,12 @@ class NewsFeedsController < ApplicationController
 
     respond_to do |format|
       if @news_feed.save
-        flash[:notice] = t('controller.successfully_created', :model => t('activerecord.models.news_feed'))
+        flash[:notice] = t('controller.successfully_created', model: t('activerecord.models.news_feed'))
         format.html { redirect_to(@news_feed) }
-        format.json { render :json => @news_feed, :status => :created, :location => @news_feed }
+        format.json { render json: @news_feed, status: :created, location: @news_feed }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @news_feed.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @news_feed.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,12 +70,12 @@ class NewsFeedsController < ApplicationController
 
     respond_to do |format|
       if @news_feed.update_attributes(params[:news_feed])
-        flash[:notice] = t('controller.successfully_updated', :model => t('activerecord.models.news_feed'))
+        flash[:notice] = t('controller.successfully_updated', model: t('activerecord.models.news_feed'))
         format.html { redirect_to(@news_feed) }
         format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @news_feed.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @news_feed.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -94,7 +94,7 @@ class NewsFeedsController < ApplicationController
   private
   def expire_cache
     Role.all.each do |role|
-      expire_fragment(:controller => :news_feeds, :action => :show, :id => @news_feed.id, :page => 'title', :role => role.name)
+      expire_fragment(:controller => :news_feeds, action: :show, :id => @news_feed.id, :page => 'title', :role => role.name)
     end
     @news_feed.force_reload
   end

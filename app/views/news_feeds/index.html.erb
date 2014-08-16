@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.news_feed')) -%></h1>
+<h1 class="title"><%= t('page.listing', model: t('activerecord.models.news_feed')) -%></h1>
 <div id="content_list">
 
 <table class="table table-striped index">
@@ -22,7 +22,7 @@
     <td>
       <%- if can? :delete, news_feed -%>
         <%= link_to t('page.edit'), edit_news_feed_path(news_feed) -%>
-        <%= link_to t('page.destroy'), news_feed, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
+        <%= link_to t('page.destroy'), news_feed, data: {confirm: t('page.are_you_sure')}, method: :delete -%>
       <%- end -%>
     </td>
   </tr>
@@ -36,7 +36,7 @@
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <li><%= link_to t('page.new', :model => t('activerecord.models.news_feed')), new_news_feed_path -%></li>
-    <li><%= link_to t('page.clear_cache'), news_feeds_path(:mode => 'clear_cache') -%></li>
+    <li><%= link_to t('page.new', model: t('activerecord.models.news_feed')), new_news_feed_path -%></li>
+    <li><%= link_to t('page.clear_cache'), news_feeds_path(mode: 'clear_cache') -%></li>
   </ul>
 </div>

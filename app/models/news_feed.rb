@@ -1,8 +1,8 @@
 class NewsFeed < ActiveRecord::Base
   attr_accessible :title, :url
   include ExpireEditableFragment
-  default_scope :order => "news_feeds.position"
-  belongs_to :library_group, :validate => true
+  default_scope order: "news_feeds.position"
+  belongs_to :library_group, validate: true
 
   validates_presence_of :title, :url, :library_group
   validates_associated :library_group
