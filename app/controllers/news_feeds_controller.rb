@@ -16,7 +16,7 @@ class NewsFeedsController < ApplicationController
   # GET /news_feeds/1.json
   def show
     if params[:mode] == 'force_reload'
-      expire_cache
+      @news_feed.force_reload
     end
 
     respond_to do |format|

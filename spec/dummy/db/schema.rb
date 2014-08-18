@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412083556) do
+ActiveRecord::Schema.define(:version => 20140811031145) do
 
   create_table "accepts", :force => true do |t|
     t.integer  "basket_id"
@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(:version => 20130412083556) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.datetime "deleted_at"
+    t.text     "opening_hour"
     t.string   "isil"
     t.float    "latitude"
     t.float    "longitude"
-    t.text     "opening_hour"
   end
 
   add_index "libraries", ["library_group_id"], :name => "index_libraries_on_library_group_id"
@@ -91,17 +91,15 @@ ActiveRecord::Schema.define(:version => 20130412083556) do
     t.string   "name",                                                 :null => false
     t.text     "display_name"
     t.string   "short_name",                                           :null => false
-    t.string   "email"
     t.text     "my_networks"
-    t.boolean  "use_dsbl",       :default => false,                    :null => false
-    t.text     "dsbl_list"
     t.text     "login_banner"
     t.text     "note"
     t.integer  "country_id"
+    t.integer  "position"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
-    t.string   "url",            :default => "http://localhost:3000/"
     t.text     "admin_networks"
+    t.string   "url",            :default => "http://localhost:3000/"
   end
 
   add_index "library_groups", ["short_name"], :name => "index_library_groups_on_short_name"
@@ -133,6 +131,24 @@ ActiveRecord::Schema.define(:version => 20130412083556) do
 
   add_index "news_posts", ["user_id"], :name => "index_news_posts_on_user_id"
 
+  create_table "profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "user_group_id"
+    t.integer  "library_id"
+    t.string   "locale"
+    t.string   "user_number"
+    t.text     "full_name"
+    t.text     "note"
+    t.text     "keyword_list"
+    t.integer  "required_role_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.datetime "expired_at"
+  end
+
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
+  add_index "profiles", ["user_number"], :name => "index_profiles_on_user_number", :unique => true
+
   create_table "request_status_types", :force => true do |t|
     t.string   "name",         :null => false
     t.text     "display_name"
@@ -152,12 +168,13 @@ ActiveRecord::Schema.define(:version => 20130412083556) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.text     "display_name"
+    t.string   "name",                        :null => false
+    t.string   "display_name"
     t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "score",        :default => 0, :null => false
     t.integer  "position"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
   create_table "search_engines", :force => true do |t|
@@ -215,9 +232,31 @@ ActiveRecord::Schema.define(:version => 20130412083556) do
   add_index "subscriptions", ["order_list_id"], :name => "index_subscriptions_on_order_list_id"
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
+  create_table "user_export_file_transitions", :force => true do |t|
+    t.string   "to_state"
+    t.text     "metadata",            :default => "{}"
+    t.integer  "sort_key"
+    t.integer  "user_export_file_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
+
+  add_index "user_export_file_transitions", ["sort_key", "user_export_file_id"], :name => "index_user_export_file_transitions_on_sort_key_and_file_id", :unique => true
+  add_index "user_export_file_transitions", ["user_export_file_id"], :name => "index_user_export_file_transitions_on_file_id"
+
+  create_table "user_export_files", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "user_export_file_name"
+    t.string   "user_export_content_type"
+    t.integer  "user_export_file_size"
+    t.datetime "user_export_updated_at"
+    t.datetime "executed_at"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
   create_table "user_groups", :force => true do |t|
     t.string   "name"
-    t.string   "string"
     t.text     "display_name"
     t.text     "note"
     t.integer  "position"
@@ -235,9 +274,48 @@ ActiveRecord::Schema.define(:version => 20130412083556) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "user_has_roles", ["role_id"], :name => "index_user_has_roles_on_role_id"
+  add_index "user_has_roles", ["user_id"], :name => "index_user_has_roles_on_user_id"
+
+  create_table "user_import_file_transitions", :force => true do |t|
+    t.string   "to_state"
+    t.text     "metadata",            :default => "{}"
+    t.integer  "sort_key"
+    t.integer  "user_import_file_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
+
+  add_index "user_import_file_transitions", ["sort_key", "user_import_file_id"], :name => "index_user_import_file_transitions_on_sort_key_and_file_id", :unique => true
+  add_index "user_import_file_transitions", ["user_import_file_id"], :name => "index_user_import_file_transitions_on_user_import_file_id"
+
+  create_table "user_import_files", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "note"
+    t.datetime "executed_at"
+    t.string   "user_import_file_name"
+    t.string   "user_import_content_type"
+    t.string   "user_import_file_size"
+    t.datetime "user_import_updated_at"
+    t.string   "user_import_fingerprint"
+    t.string   "edit_mode"
+    t.text     "error_message"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "user_encoding"
+    t.integer  "default_library_id"
+    t.integer  "default_user_group_id"
+  end
+
+  create_table "user_import_results", :force => true do |t|
+    t.integer  "user_import_file_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -248,18 +326,12 @@ ActiveRecord::Schema.define(:version => 20130412083556) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "username"
-    t.string   "user_number"
-    t.string   "state"
-    t.string   "locale"
     t.datetime "deleted_at"
     t.datetime "expired_at"
-    t.integer  "library_id",             :default => 1,  :null => false
-    t.integer  "required_role_id",       :default => 1,  :null => false
-    t.integer  "user_group_id",          :default => 1,  :null => false
-    t.text     "note"
-    t.text     "keyword_list"
-    t.integer  "failed_attempts"
+    t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "confirmed_at"
@@ -268,8 +340,6 @@ ActiveRecord::Schema.define(:version => 20130412083556) do
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
-  add_index "users", ["user_group_id"], :name => "index_users_on_user_group_id"
-  add_index "users", ["user_number"], :name => "index_users_on_user_number", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "versions", :force => true do |t|

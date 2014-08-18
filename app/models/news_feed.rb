@@ -1,60 +1,34 @@
 class NewsFeed < ActiveRecord::Base
   attr_accessible :title, :url
-  include ExpireEditableFragment
   default_scope order: "news_feeds.position"
   belongs_to :library_group, validate: true
 
   validates_presence_of :title, :url, :library_group
   validates_associated :library_group
-  validates_length_of :url, :maximum => 255
+  validates_length_of :url, maximum: 255
+  before_save :fetch
 
   acts_as_list
-
-  after_save :expire_cache
-  after_destroy :expire_cache
 
   def self.per_page
     10
   end
 
-  def expire_cache
-    expire_fragment_cache
-    Rails.cache.delete('news_feed_all')
-    true
-  end
-
-  def expire_fragment_cache
-    Role.all.each do |role|
-      Rails.cache.delete("views/news_feed_content_#{id}_#{role.name}")
-      logger.info "#{Time.zone.now} feed reloaded! : #{url}"
-    end
-  end
-
-  def content(clear_cache = false)
-    #page_url = URI.parse(url.rewrite_my_url)
-    #if page_url.port == 80
-    #  if Feedbag.feed?(url)
-    #    feed_url = url
-    #  else
-    #    feed_url = Feedbag.find(url).first
-    #  end
-    #else
-      # auto-discovery 非対応
-      feed_url = url
-    #end
+  def fetch
     begin
-      if clear_cache or body.blank?
-        feed = open(feed_url) do |f|
-          f.read
-        end
-        if rss = RSS::Parser.parse(feed, false)
-          self.body = feed
-          save!
-        end
+      feed = open(url) do |f|
+        f.read
+      end
+      if rss = RSS::Parser.parse(feed, false)
+        self.body = feed
       end
     rescue StandardError, Timeout::Error
       nil
     end
+  end
+
+  def content
+    if body
     # tDiary の RSS をパースした際に to_s が空になる
     # rss = RSS::Parser.parse(feed)
     # rss.to_s
@@ -68,16 +42,16 @@ class NewsFeed < ActiveRecord::Base
         nil
       end
     #end
+    end
   end
 
   def force_reload
-    expire_cache
-    content(true)
+    save!
   end
 
   def self.fetch_feeds
     NewsFeed.all.each do |news_feed|
-      news_feed.force_reload
+      news_feed.touch
     end
   end
 end

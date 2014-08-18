@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start 'rails'
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../dummy/config/environment", __FILE__)
@@ -40,6 +43,8 @@ RSpec.configure do |config|
     Sunspot.session = $original_sunspot_session
     Sunspot.remove_all!
   end
+
+  config.infer_spec_type_from_file_location!
 end
 
 FactoryGirl.definition_file_paths << "#{::Rails.root}/../../spec/factories"
