@@ -12,7 +12,7 @@
 </p>
 
 <div id="news_feed_box">
-  <%= render :partial => 'news_feeds/content', :locals => {:news_feed => @news_feed} -%>
+  <%= render partial: 'news_feeds/content', :locals => {:news_feed => @news_feed} -%>
 </div>
 
 <%= form_for(@news_feed, url: news_feed_url(@news_feed, mode: 'force_reload')) do |f| -%>
