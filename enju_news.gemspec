@@ -16,8 +16,9 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"] - Dir["spec/dummy/log/*"]
 
-  s.add_dependency "enju_seed", "~> 0.1.1.pre10"
+  s.add_dependency "enju_seed", "~> 0.1.1.pre11"
 
+  s.add_development_dependency "rails", "~> 3.2.19"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", "~> 3.0"
   s.add_development_dependency "factory_girl_rails"
@@ -26,5 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simplecov"
   s.add_development_dependency "annotate"
   s.add_development_dependency "sunspot-rails-tester"
-  s.add_development_dependency "enju_leaf", "~> 1.1.0.rc13"
+  s.add_development_dependency "enju_leaf", "~> 1.1.0.rc14"
 end
