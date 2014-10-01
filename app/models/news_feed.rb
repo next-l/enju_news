@@ -16,9 +16,7 @@ class NewsFeed < ActiveRecord::Base
 
   def fetch
     begin
-      feed = open(url) do |f|
-        f.read
-      end
+      feed = Faraday.get(url).body
       if rss = RSS::Parser.parse(feed, false)
         self.body = feed
       end
