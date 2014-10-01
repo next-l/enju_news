@@ -1,7 +1,7 @@
 class NewsPost < ActiveRecord::Base
   attr_accessible :title, :body
-  scope :published, where(draft: false)
-  default_scope order('news_posts.start_date DESC')
+  scope :published, -> { where(draft: false) }
+  default_scope { order('news_posts.start_date DESC') }
   belongs_to :user
   belongs_to :required_role, class_name: 'Role', foreign_key: 'required_role_id', validate: true
 

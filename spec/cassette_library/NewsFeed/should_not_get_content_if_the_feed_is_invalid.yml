@@ -7,41 +7,39 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      user-agent:
+      User-Agent:
       - Faraday v0.9.0
-      accept-encoding:
+      Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      accept:
+      Accept:
       - "*/*"
   response:
     status:
       code: 404
       message: Not Found
     headers:
-      accept-ranges:
+      Accept-Ranges:
       - bytes
-      cache-control:
+      Cache-Control:
       - max-age=604800
-      content-type:
+      Content-Type:
       - text/html
-      date:
-      - Wed, 01 Oct 2014 07:21:05 GMT
-      etag:
+      Date:
+      - Wed, 01 Oct 2014 17:45:51 GMT
+      Etag:
       - '"359670651"'
-      expires:
-      - Wed, 08 Oct 2014 07:21:05 GMT
-      last-modified:
+      Expires:
+      - Wed, 08 Oct 2014 17:45:51 GMT
+      Last-Modified:
       - Fri, 09 Aug 2013 23:54:35 GMT
-      server:
+      Server:
       - ECS (lax/4514)
-      x-cache:
+      X-Cache:
       - HIT
-      x-ec-custom-error:
+      X-Ec-Custom-Error:
       - '1'
-      content-length:
+      Content-Length:
       - '1270'
-      connection:
-      - close
     body:
       encoding: UTF-8
       string: "<!doctype html>\n<html>\n<head>\n    <title>Example Domain</title>\n\n
@@ -61,6 +59,6 @@ http_interactions:
         documents. You may use this\n    domain in examples without prior coordination
         or asking for permission.</p>\n    <p><a href=\"http://www.iana.org/domains/example\">More
         information...</a></p>\n</div>\n</body>\n</html>\n"
-    http_version: '1.1'
-  recorded_at: Wed, 01 Oct 2014 07:21:05 GMT
+    http_version: 
+  recorded_at: Wed, 01 Oct 2014 17:45:56 GMT
 recorded_with: VCR 2.9.3

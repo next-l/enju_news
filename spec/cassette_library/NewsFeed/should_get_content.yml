@@ -7,48 +7,46 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      user-agent:
+      User-Agent:
       - Faraday v0.9.0
-      accept-encoding:
+      Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      accept:
+      Accept:
       - "*/*"
   response:
     status:
       code: 200
       message: OK
     headers:
-      date:
-      - Wed, 01 Oct 2014 07:21:03 GMT
-      server:
+      Date:
+      - Wed, 01 Oct 2014 17:45:49 GMT
+      Server:
       - Apache
-      expires:
+      Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
-      cache-control:
+      Cache-Control:
       - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
-      pragma:
+      Pragma:
       - no-cache
-      x-pingback:
+      X-Pingback:
       - http://iss.ndl.go.jp/information/xmlrpc.php
-      last-modified:
+      Last-Modified:
       - Tue, 30 Sep 2014 10:39:17 GMT
-      etag:
+      Etag:
       - '"a7c11f1aac82a10a604c4cdf2924af0b"'
-      content-type:
+      Content-Type:
       - text/xml; charset=UTF-8
-      set-cookie:
-      - PHPSESSID=3kfppbttfsd087lqong8p8kti7; path=/
-      - serverid=1101; path=/
+      Set-Cookie:
+      - PHPSESSID=78gu6re7j275o3slgd5rh6scr7; path=/
       - ROUTEID=.wp02; path=/
-      vary:
+      - serverid=1101; path=/
+      Vary:
       - Accept-Encoding,User-Agent
-      content-encoding:
-      - gzip
-      x-content-type-options:
+      X-Content-Type-Options:
       - nosniff
-      x-frame-options:
+      X-Frame-Options:
       - SAMEORIGIN
-      connection:
+      Connection:
       - close
     body:
       encoding: ASCII-8BIT
@@ -541,6 +539,6 @@ http_interactions:
         aGFuZGhlbGQiIHR5cGU9InRleHQvaHRtbCIgaHJlZj0iaHR0cDovL2lzcy5u
         ZGwuZ28uanAvaW5mb3JtYXRpb24vMjAxNC8wNi8xN19hbm5vdW5jZS02LyIg
         Lz4KCTwvaXRlbT4KCTwvY2hhbm5lbD4KPC9yc3M+Cg==
-    http_version: '1.0'
-  recorded_at: Wed, 01 Oct 2014 07:21:05 GMT
+    http_version: 
+  recorded_at: Wed, 01 Oct 2014 17:45:55 GMT
 recorded_with: VCR 2.9.3
