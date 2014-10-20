@@ -20,4 +20,4 @@ env:
 notifications:
   hipchat:
     rooms:
-      secure: J3SZQxwoYVA2CwAybJwMz9CD4JuMgABqV2zVru9eFhZhOmUMsbCtwmAO+kmkfIKMnCRBW0Yn31M5IB4qyei8s/qAVQX6kV68lSpTWJ3g9TTtPkPWq68S/LbMG7OLtYiQdAeEoWUPuqJRwAxdJ+SWcebnY+G44YHHMYmehCVE9/g=
+      secure: Ghx4+Ip0t8QJthUGDTasFK8L+CdkcuNoq2kCzZsXe90vQ6LoRR3h8/+9GQ9DUM5WdyTk54ufOJi7rsX9vxY6LXz0wZnr1aVdh7TUShb/Kx8KYyhfLC5b8t+QrANEnlDvRaJEtWVaURICIfd1l2CEfjAS4JoFbA6NCP+2nhnadDE=
