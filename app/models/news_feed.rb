@@ -1,6 +1,6 @@
 class NewsFeed < ActiveRecord::Base
   attr_accessible :title, :url
-  default_scope order: "news_feeds.position"
+  default_scope { order("news_feeds.position") }
   belongs_to :library_group, validate: true
 
   validates_presence_of :title, :url, :library_group
@@ -16,9 +16,7 @@ class NewsFeed < ActiveRecord::Base
 
   def fetch
     begin
-      feed = open(url) do |f|
-        f.read
-      end
+      feed = Faraday.get(url).body
       if rss = RSS::Parser.parse(feed, false)
         self.body = feed
       end
