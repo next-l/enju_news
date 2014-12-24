@@ -46,7 +46,7 @@ class NewsPostsController < ApplicationController
   # POST /news_posts
   # POST /news_posts.json
   def create
-    @news_post = NewsPost.new(params[:news_post])
+    @news_post = NewsPost.new(news_post_params)
     @news_post.user = current_user
 
     respond_to do |format|
@@ -70,7 +70,7 @@ class NewsPostsController < ApplicationController
     end
 
     respond_to do |format|
-      if @news_post.update_attributes(params[:news_post])
+      if @news_post.update_attributes(news_post_params)
         format.html { redirect_to(@news_post, notice: t('controller.successfully_updated', model: t('activerecord.models.news_post'))) }
         format.json { head :no_content }
       else
@@ -93,6 +93,10 @@ class NewsPostsController < ApplicationController
   end
 
   private
+  def news_post_params
+    params.require(:news_post).permit(:title, :body)
+  end
+
   def prepare_options
     @roles = Role.all
   end

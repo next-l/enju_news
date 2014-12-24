@@ -42,7 +42,7 @@ class NewsFeedsController < ApplicationController
   # POST /news_feeds
   # POST /news_feeds.json
   def create
-    @news_feed = NewsFeed.new(params[:news_feed])
+    @news_feed = NewsFeed.new(news_feed_params)
 
     respond_to do |format|
       if @news_feed.save
@@ -68,7 +68,7 @@ class NewsFeedsController < ApplicationController
     end
 
     respond_to do |format|
-      if @news_feed.update_attributes(params[:news_feed])
+      if @news_feed.update_attributes(news_feed_params)
         flash[:notice] = t('controller.successfully_updated', model: t('activerecord.models.news_feed'))
         format.html { redirect_to(@news_feed) }
         format.json { head :no_content }
@@ -91,6 +91,10 @@ class NewsFeedsController < ApplicationController
   end
 
   private
+  def news_feed_params
+    params.require(:news_feed).permit(:title, :url)
+  end
+
   def expire_cache
     @news_feed.force_reload
   end
