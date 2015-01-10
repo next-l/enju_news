@@ -33,17 +33,17 @@ describe NewsFeedsController do
     describe "When logged in as User" do
       login_user
 
-      it "assigns nil as @news_feeds" do
+      it "assigns empty as @news_feeds" do
         get :index
-        assigns(:news_feeds).should be_nil
+        assigns(:news_feeds).should be_empty
         response.should be_forbidden
       end
     end
 
     describe "When not logged in" do
-      it "assigns nil as @news_feeds" do
+      it "assigns all news_feeds as @news_feeds" do
         get :index
-        assigns(:news_feeds).should be_nil
+        assigns(:news_feeds).should be_empty
         response.should redirect_to(new_user_session_url)
       end
     end

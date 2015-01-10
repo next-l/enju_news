@@ -1,5 +1,5 @@
 <div id="content_detail" class="ui-corner-all">
-<h1 class="title"><%= t('page.listing', :model => t('activerecord.models.news_post')) -%></h1>
+<h1 class="title"><%= t('page.listing', model: t('activerecord.models.news_post')) -%></h1>
 <div id="content_list">
 
 <table class="table table-striped index">
@@ -22,9 +22,9 @@
     </td>
     <td><%= news_post.required_role.display_name.localize -%></td>
     <td>
-      <% if policy(news_post).destroy? %>
+      <% if can? :delete, news_post %>
         <%= link_to t('page.edit'), edit_news_post_path(news_post) -%>
-        <%= link_to t('page.destroy'), news_post, :data => {:confirm => t('page.are_you_sure')}, :method => :delete -%>
+        <%= link_to t('page.destroy'), news_post, data: {confirm: t('page.are_you_sure')}, method: :delete -%>
       <% end %>
     </td>
   </tr>
@@ -37,6 +37,6 @@
 
 <div id="submenu" class="ui-corner-all">
   <ul>
-    <li><%= link_to t('page.new', :model => t('activerecord.models.news_post')), new_news_post_path -%></li>
+    <li><%= link_to t('page.new', model: t('activerecord.models.news_post')), new_news_post_path -%></li>
   </ul>
 </div>
