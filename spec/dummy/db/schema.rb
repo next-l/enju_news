@@ -57,6 +57,22 @@ ActiveRecord::Schema.define(version: 20140811031145) do
     t.datetime "updated_at"
   end
 
+  create_table "languages", force: :cascade do |t|
+    t.string  "name",         null: false
+    t.string  "native_name"
+    t.text    "display_name"
+    t.string  "iso_639_1"
+    t.string  "iso_639_2"
+    t.string  "iso_639_3"
+    t.text    "note"
+    t.integer "position"
+  end
+
+  add_index "languages", ["iso_639_1"], name: "index_languages_on_iso_639_1"
+  add_index "languages", ["iso_639_2"], name: "index_languages_on_iso_639_2"
+  add_index "languages", ["iso_639_3"], name: "index_languages_on_iso_639_3"
+  add_index "languages", ["name"], name: "index_languages_on_name", unique: true
+
   create_table "libraries", force: :cascade do |t|
     t.string   "name",                                null: false
     t.text     "display_name"

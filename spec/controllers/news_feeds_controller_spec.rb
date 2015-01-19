@@ -17,7 +17,7 @@ describe NewsFeedsController do
 
       it "assigns all news_feeds as @news_feeds" do
         get :index
-        assigns(:news_feeds).should eq(NewsFeed.page(1))
+        assigns(:news_feeds).should eq(NewsFeed.order(:position).page(1))
       end
     end
 
@@ -26,7 +26,7 @@ describe NewsFeedsController do
 
       it "assigns all news_feeds as @news_feeds" do
         get :index
-        assigns(:news_feeds).should eq(NewsFeed.page(1))
+        assigns(:news_feeds).should eq(NewsFeed.order(:position).page(1))
       end
     end
 
@@ -35,7 +35,7 @@ describe NewsFeedsController do
 
       it "assigns empty as @news_feeds" do
         get :index
-        assigns(:news_feeds).should be_empty
+        assigns(:news_feeds).should be_nil
         response.should be_forbidden
       end
     end
@@ -43,7 +43,7 @@ describe NewsFeedsController do
     describe "When not logged in" do
       it "assigns all news_feeds as @news_feeds" do
         get :index
-        assigns(:news_feeds).should be_empty
+        assigns(:news_feeds).should be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -105,7 +105,7 @@ describe NewsFeedsController do
 
       it "should not assign the requested news_feed as @news_feed" do
         get :new
-        assigns(:news_feed).should_not be_valid
+        assigns(:news_feed).should be_nil
         response.should be_forbidden
       end
     end
@@ -115,7 +115,7 @@ describe NewsFeedsController do
 
       it "should not assign the requested news_feed as @news_feed" do
         get :new
-        assigns(:news_feed).should_not be_valid
+        assigns(:news_feed).should be_nil
         response.should be_forbidden
       end
     end
@@ -123,7 +123,7 @@ describe NewsFeedsController do
     describe "When not logged in" do
       it "should not assign the requested news_feed as @news_feed" do
         get :new
-        assigns(:news_feed).should_not be_valid
+        assigns(:news_feed).should be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -209,7 +209,7 @@ describe NewsFeedsController do
       describe "with valid params" do
         it "assigns a newly created news_feed as @news_feed" do
           post :create, :news_feed => @attrs
-          assigns(:news_feed).should be_valid
+          assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
@@ -221,7 +221,7 @@ describe NewsFeedsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_feed as @news_feed" do
           post :create, :news_feed => @invalid_attrs
-          assigns(:news_feed).should_not be_valid
+          assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
@@ -237,7 +237,7 @@ describe NewsFeedsController do
       describe "with valid params" do
         it "assigns a newly created news_feed as @news_feed" do
           post :create, :news_feed => @attrs
-          assigns(:news_feed).should be_valid
+          assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
@@ -249,7 +249,7 @@ describe NewsFeedsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_feed as @news_feed" do
           post :create, :news_feed => @invalid_attrs
-          assigns(:news_feed).should_not be_valid
+          assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
@@ -263,7 +263,7 @@ describe NewsFeedsController do
       describe "with valid params" do
         it "assigns a newly created news_feed as @news_feed" do
           post :create, :news_feed => @attrs
-          assigns(:news_feed).should be_valid
+          assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
@@ -275,7 +275,7 @@ describe NewsFeedsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_feed as @news_feed" do
           post :create, :news_feed => @invalid_attrs
-          assigns(:news_feed).should_not be_valid
+          assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do

@@ -1,10 +1,11 @@
 class NewsFeedsController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_news_feed, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
 
   # GET /news_feeds
   # GET /news_feeds.json
   def index
-    @news_feeds = NewsFeed.page(params[:page])
+    @news_feeds = NewsFeed.order(:position).page(params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @news_feeds }
@@ -91,6 +92,15 @@ class NewsFeedsController < ApplicationController
   end
 
   private
+  def set_news_feed
+    @news_feed = NewsFeed.find(params[:id])
+    authorize @news_feed
+  end
+
+  def check_policy
+    authorize NewsFeed
+  end
+
   def news_feed_params
     params.require(:news_feed).permit(:title, :url)
   end

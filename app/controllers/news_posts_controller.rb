@@ -1,6 +1,7 @@
 class NewsPostsController < ApplicationController
-  load_and_authorize_resource
-  before_filter :prepare_options, only: [:new, :edit]
+  before_action :set_news_post, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
+  before_action :prepare_options, only: [:new, :edit]
 
   # GET /news_posts
   # GET /news_posts.json
@@ -93,6 +94,15 @@ class NewsPostsController < ApplicationController
   end
 
   private
+  def set_news_post
+    @news_post = NewsPost.find(params[:id])
+    authorize @news_post
+  end
+
+  def check_policy
+    authorize NewsPost
+  end
+
   def news_post_params
     params.require(:news_post).permit(:title, :body)
   end
