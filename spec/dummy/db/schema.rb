@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150304175658) do
     t.datetime "updated_at"
     t.text     "admin_networks"
     t.string   "url",            default: "http://localhost:3000/"
+    t.text     "settings"
   end
 
   add_index "library_groups", ["short_name"], name: "index_library_groups_on_short_name"
