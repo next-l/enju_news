@@ -9,7 +9,7 @@ appraise "rails-3.2" do
 end
 
 appraise "rails-4.1" do
-  gem "rails", "4.1.10"
+  gem "rails", "4.1.12"
   gem "jquery-rails"
   gem "statesman", "~> 1.3"
   gem "foreigner"
