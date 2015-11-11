@@ -1,3 +1,3 @@
 module EnjuNews
-  VERSION = "0.1.0.pre9"
+  VERSION = "0.1.0"
 end
