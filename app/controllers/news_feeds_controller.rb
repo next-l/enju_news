@@ -1,5 +1,6 @@
 class NewsFeedsController < ApplicationController
-  load_and_authorize_resource
+  before_action :set_news_feed, only: [:show, :edit, :update, :destroy]
+  before_action :check_policy, only: [:index, :new, :create]
 
   # GET /news_feeds
   # GET /news_feeds.json
@@ -91,6 +92,15 @@ class NewsFeedsController < ApplicationController
   end
 
   private
+  def set_news_feed
+    @news_feed = NewsFeed.find(params[:id])
+    authorize @news_feed
+  end
+
+  def check_policy
+    authorize NewsFeed
+  end
+
   def news_feed_params
     params.require(:news_feed).permit(:title, :url)
   end

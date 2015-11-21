@@ -103,7 +103,7 @@ describe NewsPostsController do
 
       it "should not assign the requested news_post as @news_post" do
         get :new
-        assigns(:news_post).should_not be_valid
+        assigns(:news_post).should be_nil
         response.should be_forbidden
       end
     end
@@ -113,7 +113,7 @@ describe NewsPostsController do
 
       it "should not assign the requested news_post as @news_post" do
         get :new
-        assigns(:news_post).should_not be_valid
+        assigns(:news_post).should be_nil
         response.should be_forbidden
       end
     end
@@ -121,7 +121,7 @@ describe NewsPostsController do
     describe "When not logged in" do
       it "should not assign the requested news_post as @news_post" do
         get :new
-        assigns(:news_post).should_not be_valid
+        assigns(:news_post).should be_nil
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -207,7 +207,7 @@ describe NewsPostsController do
       describe "with valid params" do
         it "assigns a newly created news_post as @news_post" do
           post :create, :news_post => @attrs
-          assigns(:news_post).should_not be_valid
+          assigns(:news_post).should be_nil
         end
 
         it "should be forbidden" do
@@ -219,7 +219,7 @@ describe NewsPostsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_post as @news_post" do
           post :create, :news_post => @invalid_attrs
-          assigns(:news_post).should_not be_valid
+          assigns(:news_post).should be_nil
         end
 
         it "should be forbidden" do
@@ -235,7 +235,7 @@ describe NewsPostsController do
       describe "with valid params" do
         it "assigns a newly created news_post as @news_post" do
           post :create, :news_post => @attrs
-          assigns(:news_post).should_not be_valid
+          assigns(:news_post).should be_nil
         end
 
         it "should be forbidden" do
@@ -247,7 +247,7 @@ describe NewsPostsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_post as @news_post" do
           post :create, :news_post => @invalid_attrs
-          assigns(:news_post).should_not be_valid
+          assigns(:news_post).should be_nil
         end
 
         it "should be forbidden" do
@@ -261,7 +261,7 @@ describe NewsPostsController do
       describe "with valid params" do
         it "assigns a newly created news_post as @news_post" do
           post :create, :news_post => @attrs
-          assigns(:news_post).should_not be_valid
+          assigns(:news_post).should be_nil
         end
 
         it "should be forbidden" do
@@ -273,7 +273,7 @@ describe NewsPostsController do
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_post as @news_post" do
           post :create, :news_post => @invalid_attrs
-          assigns(:news_post).should_not be_valid
+          assigns(:news_post).should be_nil
         end
 
         it "should be forbidden" do

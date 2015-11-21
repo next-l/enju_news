@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "faraday"
 
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "mysql2", "~> 0.3.20"
+  s.add_development_dependency "mysql2"
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.4"
   s.add_development_dependency "factory_girl_rails"
@@ -29,5 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "annotate"
   s.add_development_dependency "sunspot-rails-tester"
   s.add_development_dependency "enju_leaf", "~> 1.1.0"
-  s.add_development_dependency "appraisal"
+  s.add_development_dependency "coveralls"
 end
