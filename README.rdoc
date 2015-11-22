@@ -1,6 +1,6 @@
 = EnjuNews
-{<img src="https://secure.travis-ci.org/next-l/enju_news.png?branch=1.1" alt="Build Status" />}[http://travis-ci.org/next-l/enju_news]
-{<img src="https://coveralls.io/repos/next-l/enju_news/badge.png?branch=1.1" alt="Coverage Status" />}[https://coveralls.io/r/next-l/enju_news?branch=1.1]
+{<img src="https://travis-ci.org/next-l/enju_news.svg?branch=1.1" alt="Build Status" />}[https://travis-ci.org/next-l/enju_news]
+{<img src="https://coveralls.io/repos/next-l/enju_news/badge.svg?branch=1.1&service=github" alt="Coverage Status" />}[https://coveralls.io/github/next-l/enju_news?branch=1.1]
 {<img src="https://hakiri.io/github/next-l/enju_news/1.1.svg" alt="security" />}[https://hakiri.io/github/next-l/enju_news/1.1]
 
 This project rocks and uses MIT-LICENSE.
