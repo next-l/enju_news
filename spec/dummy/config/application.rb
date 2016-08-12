@@ -4,7 +4,7 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 require 'enju_news'
-require 'enju_leaf'
+require 'enju_library'
 
 module Dummy
   class Application < Rails::Application
