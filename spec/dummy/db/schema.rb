@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213072705) do
+ActiveRecord::Schema.define(version: 20160813130535) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer  "basket_id"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20151213072705) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "colors", force: :cascade do |t|
+    t.integer  "library_group_id"
+    t.string   "property"
+    t.string   "code"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "colors", ["library_group_id"], name: "index_colors_on_library_group_id"
 
   create_table "libraries", force: :cascade do |t|
     t.string   "name",                                null: false
@@ -113,6 +124,8 @@ ActiveRecord::Schema.define(version: 20151213072705) do
     t.text     "admin_networks"
     t.string   "url",            default: "http://localhost:3000/"
     t.text     "settings"
+    t.text     "html_snippet"
+    t.string   "email"
   end
 
   add_index "library_groups", ["short_name"], name: "index_library_groups_on_short_name"
@@ -252,6 +265,7 @@ ActiveRecord::Schema.define(version: 20151213072705) do
     t.integer  "user_export_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "most_recent"
   end
 
   add_index "user_export_file_transitions", ["sort_key", "user_export_file_id"], name: "index_user_export_file_transitions_on_sort_key_and_file_id", unique: true
@@ -297,6 +311,7 @@ ActiveRecord::Schema.define(version: 20151213072705) do
     t.integer  "user_import_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "most_recent"
   end
 
   add_index "user_import_file_transitions", ["sort_key", "user_import_file_id"], name: "index_user_import_file_transitions_on_sort_key_and_file_id", unique: true
@@ -308,7 +323,7 @@ ActiveRecord::Schema.define(version: 20151213072705) do
     t.datetime "executed_at"
     t.string   "user_import_file_name"
     t.string   "user_import_content_type"
-    t.string   "user_import_file_size"
+    t.integer  "user_import_file_size"
     t.datetime "user_import_updated_at"
     t.string   "user_import_fingerprint"
     t.string   "edit_mode"
@@ -326,6 +341,7 @@ ActiveRecord::Schema.define(version: 20151213072705) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "error_message"
   end
 
   create_table "users", force: :cascade do |t|
@@ -365,5 +381,16 @@ ActiveRecord::Schema.define(version: 20151213072705) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+
+  create_table "withdraws", force: :cascade do |t|
+    t.integer  "basket_id"
+    t.integer  "item_id"
+    t.integer  "librarian_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "withdraws", ["basket_id"], name: "index_withdraws_on_basket_id"
+  add_index "withdraws", ["item_id"], name: "index_withdraws_on_item_id"
 
 end
