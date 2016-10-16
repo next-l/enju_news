@@ -21,8 +21,6 @@ matrix:
   exclude:
     - rvm: 2.1.9
       gemfile: gemfiles/rails_5.0.gemfile
-  allow_failures:
-    - gemfile: gemfiles/rails_5.0.gemfile
 notifications:
   slack:
     secure: aVw4odRuPfoUjOXbmYfwhYrUuG0BPxmPDmpz6RmUoUKUtUDPWeCw60Xxv+AvGxNuc2usZ32eHW/tKXsQukx5SADVYkSgiAquo4/PErxAdt+P+ilEUT0fzJr8N11mtY0SEOK1iXVp5ucjswsjUYPyQwcddL/hBU2tcSU73yrLv2E=
