@@ -58,11 +58,10 @@ end
 #
 #  id               :integer          not null, primary key
 #  library_group_id :integer          default(1), not null
-#  title            :string(255)
-#  url              :string(255)
+#  title            :string
+#  url              :string
 #  body             :text
 #  position         :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  created_at       :datetime
+#  updated_at       :datetime
 #
-

@@ -7,6 +7,7 @@ class NewsPost < ActiveRecord::Base
 
   validates_presence_of :title, :body, :user_id
   validates_associated :user
+  validate :check_date
 
   acts_as_list
 
@@ -17,6 +18,16 @@ class NewsPost < ActiveRecord::Base
 
   def self.per_page
     10
+  end
+
+  def check_date
+    if start_date and end_date
+      self.end_date = end_date.end_of_day
+      if start_date >= end_date
+        errors.add(:start_date)
+        errors.add(:end_date)
+      end
+    end
   end
 end
 
@@ -34,8 +45,7 @@ end
 #  note             :text
 #  position         :integer
 #  draft            :boolean          default(FALSE), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  url              :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  url              :string
 #
-
