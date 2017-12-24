@@ -4,12 +4,12 @@ describe NewsPostsController do
   fixtures :all
 
   def valid_attributes
-    FactoryGirl.attributes_for(:news_post)
+    FactoryBot.attributes_for(:news_post)
   end
 
   describe "GET index" do
     before(:each) do
-      FactoryGirl.create(:news_post)
+      FactoryBot.create(:news_post)
     end
 
     describe "When logged in as Administrator" do
@@ -49,7 +49,7 @@ describe NewsPostsController do
 
   describe "GET show" do
     before(:each) do
-      @news_post = FactoryGirl.create(:news_post)
+      @news_post = FactoryBot.create(:news_post)
     end
 
     describe "When logged in as Administrator" do
@@ -129,7 +129,7 @@ describe NewsPostsController do
 
   describe "GET edit" do
     before(:each) do
-      @news_post = FactoryGirl.create(:news_post)
+      @news_post = FactoryBot.create(:news_post)
     end
 
     describe "When logged in as Administrator" do
@@ -286,7 +286,7 @@ describe NewsPostsController do
 
   describe "PUT update" do
     before(:each) do
-      @news_post = FactoryGirl.create(:news_post)
+      @news_post = FactoryBot.create(:news_post)
       @attrs = valid_attributes
       @invalid_attrs = {:body => ''}
     end
@@ -387,7 +387,7 @@ describe NewsPostsController do
 
   describe "DELETE destroy" do
     before(:each) do
-      @news_post = FactoryGirl.create(:news_post)
+      @news_post = FactoryBot.create(:news_post)
     end
 
     describe "When logged in as Administrator" do
