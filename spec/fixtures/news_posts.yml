@@ -28,6 +28,5 @@ news_post_00002:
 #  draft            :boolean          default(FALSE), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  url              :string(255)
+#  url              :string
 #
-
