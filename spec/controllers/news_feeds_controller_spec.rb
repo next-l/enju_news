@@ -96,7 +96,7 @@ describe NewsFeedsController do
       it 'assigns the requested news_feed as @news_feed' do
         get :new
         assigns(:news_feed).should_not be_valid
-        response.should be_success
+        response.should be_successful
       end
     end
 
@@ -198,7 +198,7 @@ describe NewsFeedsController do
 
         it 'should be successful' do
           post :create, params: { news_feed: @invalid_attrs }
-          response.should be_success
+          response.should be_successful
         end
       end
     end
