@@ -69,7 +69,7 @@ class NewsFeedsController < ApplicationController
     end
 
     respond_to do |format|
-      if @news_feed.update_attributes(news_feed_params)
+      if @news_feed.update(news_feed_params)
         flash[:notice] = t('controller.successfully_updated', model: t('activerecord.models.news_feed'))
         format.html { redirect_to(@news_feed) }
         format.json { head :no_content }

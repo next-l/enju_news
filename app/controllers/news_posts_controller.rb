@@ -71,7 +71,7 @@ class NewsPostsController < ApplicationController
     end
 
     respond_to do |format|
-      if @news_post.update_attributes(news_post_params)
+      if @news_post.update(news_post_params)
         format.html { redirect_to(@news_post, notice: t('controller.successfully_updated', model: t('activerecord.models.news_post'))) }
         format.json { head :no_content }
       else
