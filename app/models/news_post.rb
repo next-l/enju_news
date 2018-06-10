@@ -5,7 +5,7 @@ class NewsPost < ActiveRecord::Base
   belongs_to :user
   belongs_to :required_role, class_name: 'Role', foreign_key: 'required_role_id', validate: true
 
-  validates_presence_of :title, :body, :user_id
+  validates :title, :body, :user_id, presence: true
   validates_associated :user
   validate :check_date
 

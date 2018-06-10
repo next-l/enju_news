@@ -2,9 +2,9 @@ class NewsFeed < ActiveRecord::Base
   default_scope { order("news_feeds.position") }
   belongs_to :library_group, validate: true
 
-  validates_presence_of :title, :url, :library_group
+  validates :title, :url, :library_group, presence: true
   validates_associated :library_group
-  validates_length_of :url, maximum: 255
+  validates :url, length: { maximum: 255 }
   before_save :fetch
 
   acts_as_list
@@ -30,7 +30,7 @@ class NewsFeed < ActiveRecord::Base
     # rss = RSS::Parser.parse(feed)
     # rss.to_s
     # => ""
-    #if rss.nil?
+    # if rss.nil?
       begin
         rss = RSS::Parser.parse(body)
       rescue RSS::InvalidRSSError
@@ -38,7 +38,7 @@ class NewsFeed < ActiveRecord::Base
       rescue RSS::NotWellFormedError, TypeError
         nil
       end
-    #end
+    # end
     end
   end
 
