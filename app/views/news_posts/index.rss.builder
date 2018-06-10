@@ -1,4 +1,4 @@
-xml.instruct! :xml, :version=>"1.0"
+xml.instruct! :xml, version: "1.0"
 xml.rss('version' => "2.0",
         'xmlns:opensearch' => "http://a9.com/-/spec/opensearch/1.1/",
         'xmlns:dc' => "http://purl.org/dc/elements/1.1/",
@@ -11,7 +11,7 @@ xml.rss('version' => "2.0",
     xml.ttl "60"
     xml.tag! "atom:link", rel: 'self', href: news_posts_url(format: :rss)
     xml.tag! "atom:link", rel: 'alternate', href: root_url
-    xml.tag! "atom:link", rel: 'search', :type => 'application/opensearchdescription+xml', href: page_opensearch_url
+    xml.tag! "atom:link", rel: 'search', type: 'application/opensearchdescription+xml', href: page_opensearch_url
     unless params[:query].blank?
       xml.tag! "opensearch:startIndex", @news_posts.offset + 1
       xml.tag! "opensearch:itemsPerPage", @news_posts.per_page
@@ -24,7 +24,7 @@ xml.rss('version' => "2.0",
           # rfc822
           xml.pubDate h(news_post.created_at.utc.iso8601)
           xml.link news_post_url(news_post)
-          xml.guid news_post_url(news_post), :isPermaLink => "true"
+          xml.guid news_post_url(news_post), isPermaLink: "true"
         end
       end
     end
