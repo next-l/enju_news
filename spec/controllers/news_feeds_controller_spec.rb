@@ -58,7 +58,7 @@ describe NewsFeedsController do
       login_admin
 
       it "assigns the requested news_feed as @news_feed" do
-        get :show, id: @news_feed.id
+        get :show, params: { id: @news_feed.id }
         assigns(:news_feed).should eq(@news_feed)
       end
     end
@@ -67,7 +67,7 @@ describe NewsFeedsController do
       login_librarian
 
       it "assigns the requested news_feed as @news_feed" do
-        get :show, id: @news_feed.id
+        get :show, params: { id: @news_feed.id }
         assigns(:news_feed).should eq(@news_feed)
       end
     end
@@ -76,14 +76,14 @@ describe NewsFeedsController do
       login_user
 
       it "assigns the requested news_feed as @news_feed" do
-        get :show, id: @news_feed.id
+        get :show, params: { id: @news_feed.id }
         assigns(:news_feed).should eq(@news_feed)
       end
     end
 
     describe "When not logged in" do
       it "assigns the requested news_feed as @news_feed" do
-        get :show, id: @news_feed.id
+        get :show, params: { id: @news_feed.id }
         assigns(:news_feed).should eq(@news_feed)
       end
     end
@@ -138,7 +138,7 @@ describe NewsFeedsController do
       login_admin
 
       it "assigns the requested news_feed as @news_feed" do
-        get :edit, id: @news_feed.id
+        get :edit, params: { id: @news_feed.id }
         assigns(:news_feed).should eq(@news_feed)
       end
     end
@@ -147,7 +147,7 @@ describe NewsFeedsController do
       login_librarian
 
       it "assigns the requested news_feed as @news_feed" do
-        get :edit, id: @news_feed.id
+        get :edit, params: { id: @news_feed.id }
         response.should be_forbidden
       end
     end
@@ -156,14 +156,14 @@ describe NewsFeedsController do
       login_user
 
       it "assigns the requested news_feed as @news_feed" do
-        get :edit, id: @news_feed.id
+        get :edit, params: { id: @news_feed.id }
         response.should be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "should not assign the requested news_feed as @news_feed" do
-        get :edit, id: @news_feed.id
+        get :edit, params: { id: @news_feed.id }
         response.should redirect_to(new_user_session_url)
       end
     end
@@ -180,24 +180,24 @@ describe NewsFeedsController do
 
       describe "with valid params" do
         it "assigns a newly created news_feed as @news_feed" do
-          post :create, news_feed: @attrs
+          post :create, params: { news_feed: @attrs }
           assigns(:news_feed).should be_valid
         end
 
         it "redirects to the created news_feed" do
-          post :create, news_feed: @attrs
+          post :create, params: { news_feed: @attrs }
           response.should redirect_to(assigns(:news_feed))
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_feed as @news_feed" do
-          post :create, news_feed: @invalid_attrs
+          post :create, params: { news_feed: @invalid_attrs }
           assigns(:news_feed).should_not be_valid
         end
 
         it "should be successful" do
-          post :create, news_feed: @invalid_attrs
+          post :create, params: { news_feed: @invalid_attrs }
           response.should be_success
         end
       end
@@ -208,24 +208,24 @@ describe NewsFeedsController do
 
       describe "with valid params" do
         it "assigns a newly created news_feed as @news_feed" do
-          post :create, news_feed: @attrs
+          post :create, params: { news_feed: @attrs }
           assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
-          post :create, news_feed: @attrs
+          post :create, params: { news_feed: @attrs }
           response.should be_forbidden
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_feed as @news_feed" do
-          post :create, news_feed: @invalid_attrs
+          post :create, params: { news_feed: @invalid_attrs }
           assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
-          post :create, news_feed: @invalid_attrs
+          post :create, params: { news_feed: @invalid_attrs }
           response.should be_forbidden
         end
       end
@@ -236,24 +236,24 @@ describe NewsFeedsController do
 
       describe "with valid params" do
         it "assigns a newly created news_feed as @news_feed" do
-          post :create, news_feed: @attrs
+          post :create, params: { news_feed: @attrs }
           assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
-          post :create, news_feed: @attrs
+          post :create, params: { news_feed: @attrs }
           response.should be_forbidden
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_feed as @news_feed" do
-          post :create, news_feed: @invalid_attrs
+          post :create, params: { news_feed: @invalid_attrs }
           assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
-          post :create, news_feed: @invalid_attrs
+          post :create, params: { news_feed: @invalid_attrs }
           response.should be_forbidden
         end
       end
@@ -262,24 +262,24 @@ describe NewsFeedsController do
     describe "When not logged in" do
       describe "with valid params" do
         it "assigns a newly created news_feed as @news_feed" do
-          post :create, news_feed: @attrs
+          post :create, params: { news_feed: @attrs }
           assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
-          post :create, news_feed: @attrs
+          post :create, params: { news_feed: @attrs }
           response.should redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns a newly created but unsaved news_feed as @news_feed" do
-          post :create, news_feed: @invalid_attrs
+          post :create, params: { news_feed: @invalid_attrs }
           assigns(:news_feed).should be_nil
         end
 
         it "should be forbidden" do
-          post :create, news_feed: @invalid_attrs
+          post :create, params: { news_feed: @invalid_attrs }
           response.should redirect_to(new_user_session_url)
         end
       end
@@ -298,23 +298,23 @@ describe NewsFeedsController do
 
       describe "with valid params" do
         it "updates the requested news_feed" do
-          put :update, id: @news_feed.id, news_feed: @attrs
+          put :update, params: { id: @news_feed.id, news_feed: @attrs }
         end
 
         it "assigns the requested news_feed as @news_feed" do
-          put :update, id: @news_feed.id, news_feed: @attrs
+          put :update, params: { id: @news_feed.id, news_feed: @attrs }
           assigns(:news_feed).should eq(@news_feed)
         end
 
         it "moves its position when specified" do
-          put :update, id: @news_feed.id, news_feed: @attrs, move: 'lower'
+          put :update, params: { id: @news_feed.id, news_feed: @attrs, move: 'lower' }
           response.should redirect_to(news_feeds_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested news_feed as @news_feed" do
-          put :update, id: @news_feed.id, news_feed: @invalid_attrs
+          put :update, params: { id: @news_feed.id, news_feed: @invalid_attrs }
           response.should render_template("edit")
         end
       end
@@ -325,11 +325,11 @@ describe NewsFeedsController do
 
       describe "with valid params" do
         it "updates the requested news_feed" do
-          put :update, id: @news_feed.id, news_feed: @attrs
+          put :update, params: { id: @news_feed.id, news_feed: @attrs }
         end
 
         it "assigns the requested news_feed as @news_feed" do
-          put :update, id: @news_feed.id, news_feed: @attrs
+          put :update, params: { id: @news_feed.id, news_feed: @attrs }
           assigns(:news_feed).should eq(@news_feed)
           response.should be_forbidden
         end
@@ -337,7 +337,7 @@ describe NewsFeedsController do
 
       describe "with invalid params" do
         it "assigns the requested news_feed as @news_feed" do
-          put :update, id: @news_feed.id, news_feed: @invalid_attrs
+          put :update, params: { id: @news_feed.id, news_feed: @invalid_attrs }
           response.should be_forbidden
         end
       end
@@ -348,11 +348,11 @@ describe NewsFeedsController do
 
       describe "with valid params" do
         it "updates the requested news_feed" do
-          put :update, id: @news_feed.id, news_feed: @attrs
+          put :update, params: { id: @news_feed.id, news_feed: @attrs }
         end
 
         it "assigns the requested news_feed as @news_feed" do
-          put :update, id: @news_feed.id, news_feed: @attrs
+          put :update, params: { id: @news_feed.id, news_feed: @attrs }
           assigns(:news_feed).should eq(@news_feed)
           response.should be_forbidden
         end
@@ -360,7 +360,7 @@ describe NewsFeedsController do
 
       describe "with invalid params" do
         it "assigns the requested news_feed as @news_feed" do
-          put :update, id: @news_feed.id, news_feed: @invalid_attrs
+          put :update, params: { id: @news_feed.id, news_feed: @invalid_attrs }
           response.should be_forbidden
         end
       end
@@ -369,18 +369,18 @@ describe NewsFeedsController do
     describe "When not logged in" do
       describe "with valid params" do
         it "updates the requested news_feed" do
-          put :update, id: @news_feed.id, news_feed: @attrs
+          put :update, params: { id: @news_feed.id, news_feed: @attrs }
         end
 
         it "should be forbidden" do
-          put :update, id: @news_feed.id, news_feed: @attrs
+          put :update, params: { id: @news_feed.id, news_feed: @attrs }
           response.should redirect_to(new_user_session_url)
         end
       end
 
       describe "with invalid params" do
         it "assigns the requested news_feed as @news_feed" do
-          put :update, id: @news_feed.id, news_feed: @invalid_attrs
+          put :update, params: { id: @news_feed.id, news_feed: @invalid_attrs }
           response.should redirect_to(new_user_session_url)
         end
       end
@@ -396,11 +396,11 @@ describe NewsFeedsController do
       login_admin
 
       it "destroys the requested news_feed" do
-        delete :destroy, id: @news_feed.id
+        delete :destroy, params: { id: @news_feed.id }
       end
 
       it "redirects to the news_feeds list" do
-        delete :destroy, id: @news_feed.id
+        delete :destroy, params: { id: @news_feed.id }
         response.should redirect_to(news_feeds_url)
       end
     end
@@ -409,11 +409,11 @@ describe NewsFeedsController do
       login_librarian
 
       it "destroys the requested news_feed" do
-        delete :destroy, id: @news_feed.id
+        delete :destroy, params: { id: @news_feed.id }
       end
 
       it "should be forbidden" do
-        delete :destroy, id: @news_feed.id
+        delete :destroy, params: { id: @news_feed.id }
         response.should be_forbidden
       end
     end
@@ -422,22 +422,22 @@ describe NewsFeedsController do
       login_user
 
       it "destroys the requested news_feed" do
-        delete :destroy, id: @news_feed.id
+        delete :destroy, params: { id: @news_feed.id }
       end
 
       it "should be forbidden" do
-        delete :destroy, id: @news_feed.id
+        delete :destroy, params: { id: @news_feed.id }
         response.should be_forbidden
       end
     end
 
     describe "When not logged in" do
       it "destroys the requested news_feed" do
-        delete :destroy, id: @news_feed.id
+        delete :destroy, params: { id: @news_feed.id }
       end
 
       it "should be forbidden" do
-        delete :destroy, id: @news_feed.id
+        delete :destroy, params: { id: @news_feed.id }
         response.should redirect_to(new_user_session_url)
       end
     end
