@@ -625,8 +625,21 @@ ActiveRecord::Schema.define(version: 20180107161410) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "news_posts" because of following StandardError
-#   Unknown type 'jsonb' for column 'title'
+  create_table "news_posts", force: :cascade do |t|
+    t.text "title"
+    t.text "body"
+    t.integer "user_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "required_role_id", default: 1, null: false
+    t.text "note"
+    t.integer "position"
+    t.boolean "draft", default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "url"
+    t.index ["user_id"], name: "index_news_posts_on_user_id"
+  end
 
   create_table "owns", force: :cascade do |t|
     t.integer "agent_id", null: false
