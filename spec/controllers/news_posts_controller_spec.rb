@@ -94,7 +94,7 @@ describe NewsPostsController do
       it "assigns the requested news_post as @news_post" do
         get :new
         assigns(:news_post).should_not be_valid
-        response.should be_success
+        response.should be_successful
       end
     end
 
@@ -196,7 +196,7 @@ describe NewsPostsController do
 
         it "should be successful" do
           post :create, params: { news_post: @invalid_attrs }
-          response.should be_success
+          response.should be_successful
         end
       end
     end
