@@ -5,7 +5,7 @@ class NewsFeedsController < ApplicationController
   # GET /news_feeds
   # GET /news_feeds.json
   def index
-    @news_feeds = NewsFeed.order(:position).page(params[:page])
+    @news_feeds = NewsFeed.page(params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @news_feeds }
@@ -44,7 +44,6 @@ class NewsFeedsController < ApplicationController
   # POST /news_feeds.json
   def create
     @news_feed = NewsFeed.new(news_feed_params)
-    @news_feed.library_group = @library_group
 
     respond_to do |format|
       if @news_feed.save
@@ -70,7 +69,7 @@ class NewsFeedsController < ApplicationController
     end
 
     respond_to do |format|
-      if @news_feed.update_attributes(news_feed_params)
+      if @news_feed.update(news_feed_params)
         flash[:notice] = t('controller.successfully_updated', model: t('activerecord.models.news_feed'))
         format.html { redirect_to(@news_feed) }
         format.json { head :no_content }

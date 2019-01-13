@@ -3,25 +3,23 @@ news_feed_00001:
   title: NDL
   url: http://iss.ndl.go.jp/information/feed/
   position: 1
-  library_group_id: 7dbdeb02-98ff-4158-881b-ce5339742780
 
 news_feed_00002:
   id: 2
   title: invalid feed
   url: http://example.com/invalid_feed
   position: 2
-  library_group_id: 7dbdeb02-98ff-4158-881b-ce5339742780
 
 # == Schema Information
 #
 # Table name: news_feeds
 #
 #  id               :integer          not null, primary key
-#  library_group_id :uuid             not null
+#  library_group_id :integer          default(1), not null
 #  title            :string
 #  url              :string
 #  body             :text
 #  position         :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  created_at       :datetime
+#  updated_at       :datetime
 #
