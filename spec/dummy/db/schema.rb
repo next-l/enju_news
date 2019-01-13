@@ -601,17 +601,17 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
     t.datetime "updated_at"
   end
 
-  create_table "news_feeds", id: :serial, force: :cascade do |t|
+  create_table "news_feeds", force: :cascade do |t|
     t.integer "library_group_id", default: 1, null: false
     t.string "title"
     t.string "url"
     t.text "body"
     t.integer "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "news_posts", id: :serial, force: :cascade do |t|
+  create_table "news_posts", force: :cascade do |t|
     t.text "title"
     t.text "body"
     t.integer "user_id"
@@ -621,8 +621,8 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
     t.text "note"
     t.integer "position"
     t.boolean "draft", default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "url"
     t.index ["user_id"], name: "index_news_posts_on_user_id"
   end
