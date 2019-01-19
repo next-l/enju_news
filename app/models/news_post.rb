@@ -38,7 +38,7 @@ end
 #  id               :bigint(8)        not null, primary key
 #  title            :text
 #  body             :text
-#  user_id          :bigint(8)
+#  user_id          :bigint(8)        not null
 #  start_date       :datetime
 #  end_date         :datetime
 #  required_role_id :integer          default(1), not null

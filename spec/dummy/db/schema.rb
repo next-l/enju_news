@@ -614,7 +614,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_034126) do
   create_table "news_posts", force: :cascade do |t|
     t.text "title"
     t.text "body"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer "required_role_id", default: 1, null: false
