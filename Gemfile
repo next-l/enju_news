@@ -15,9 +15,9 @@ gem "enju_leaf", github: "next-l/enju_leaf"
 gem "enju_biblio", github: "next-l/enju_biblio"
 gem "enju_library", github: "next-l/enju_library"
 gem "enju_manifestation_viewer", github: "next-l/enju_manifestation_viewer"
-gem 'mobility'
-gem 'rspec_junit_formatter'
+gem 'json_translate'
+gem 'rspec_junit_formatter', group: :test
 
 # To use debugger
 # gem 'debugger'
-gem 'rails-controller-testing'
+gem 'rails-controller-testing', group: :test

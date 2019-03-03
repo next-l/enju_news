@@ -1,12 +1,10 @@
-class CreateCreates < ActiveRecord::Migration[4.2]
+class CreateCreates < ActiveRecord::Migration[5.2]
   def change
     create_table :creates do |t|
-      t.references :agent, null: false
-      t.references :work, null: false
+      t.references :agent, foreign_key: true, null: false, type: :uuid
+      t.references :work, null: false, type: :uuid, foreign_key: {to_table: :manifestations}
       t.integer :position
       t.timestamps
     end
-    add_index :creates, :agent_id
-    add_index :creates, :work_id
   end
 end
