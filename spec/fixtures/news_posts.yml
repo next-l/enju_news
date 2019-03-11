@@ -1,12 +1,12 @@
 news_post_00001:
-  id: 1
+  id: a1d0d5ab-e277-4a77-b79a-4e4a97370428
   title: お知らせ
   body: お知らせの内容
   user_id: 1
   position: 1
 
 news_post_00002:
-  id: 2
+  id: 2865efc0-e79c-402c-ad09-970ff6e0a934
   title: お知らせ
   body: お知らせの内容
   user_id: 1
@@ -16,7 +16,7 @@ news_post_00002:
 #
 # Table name: news_posts
 #
-#  id               :bigint(8)        not null, primary key
+#  id               :uuid             not null, primary key
 #  title            :text
 #  body             :text
 #  user_id          :bigint(8)        not null

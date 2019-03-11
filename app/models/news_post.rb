@@ -35,7 +35,7 @@ end
 #
 # Table name: news_posts
 #
-#  id               :bigint(8)        not null, primary key
+#  id               :uuid             not null, primary key
 #  title            :text
 #  body             :text
 #  user_id          :bigint(8)        not null
