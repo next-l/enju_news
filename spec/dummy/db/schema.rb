@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "accepts", force: :cascade do |t|
+  create_table "accepts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "basket_id"
     t.uuid "item_id"
     t.bigint "librarian_id"
@@ -884,7 +884,7 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
   end
 
   create_table "subscribes", force: :cascade do |t|
-    t.bigint "subscription_id", null: false
+    t.uuid "subscription_id", null: false
     t.uuid "work_id", null: false
     t.datetime "start_at", null: false
     t.datetime "end_at", null: false
@@ -894,7 +894,7 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
     t.index ["work_id"], name: "index_subscribes_on_work_id"
   end
 
-  create_table "subscriptions", force: :cascade do |t|
+  create_table "subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "title", null: false
     t.text "note"
     t.bigint "user_id"
@@ -1015,7 +1015,7 @@ ActiveRecord::Schema.define(version: 2019_02_08_135957) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "withdraws", force: :cascade do |t|
+  create_table "withdraws", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "basket_id"
     t.uuid "item_id"
     t.bigint "librarian_id"
