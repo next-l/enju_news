@@ -17,6 +17,9 @@ after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 services:
   - redis-server
+branches:
+  only: 
+    - 1.3
 env:
   - DB=postgresql
 notifications:
