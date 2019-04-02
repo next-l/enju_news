@@ -9,6 +9,7 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'vcr'
 require 'factory_bot'
+require 'sunspot_matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -34,6 +35,10 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
 
   config.infer_spec_type_from_file_location!
+  config.before do
+    Sunspot.session = SunspotMatchers::SunspotSessionSpy.new(Sunspot.session)
+  end
+  config.include SunspotMatchers
 end
 
 FactoryBot.definition_file_paths << "#{::Rails.root}/../../spec/factories"
