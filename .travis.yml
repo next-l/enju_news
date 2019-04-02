@@ -10,7 +10,6 @@ before_script:
   - psql -c 'create database enju_news_dummy_test;' -U postgres
   - psql enju_news_dummy_test -c 'CREATE EXTENSION pgcrypto'
   - bundle exec rake db:migrate
-  - bundle exec rake app:sunspot:solr:start
 script:
   - bundle exec rspec
 after_script:
