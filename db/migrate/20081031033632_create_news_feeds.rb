@@ -1,6 +1,6 @@
 class CreateNewsFeeds < ActiveRecord::Migration[5.2]
   def change
-    create_table :news_feeds, id: :uuid do |t|
+    create_table :news_feeds do |t|
       t.integer :library_group_id, default: 1, null: false
       t.string :title
       t.string :url

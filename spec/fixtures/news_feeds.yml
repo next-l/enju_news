@@ -1,11 +1,11 @@
 news_feed_00001:
-  id: 2c2c2c68-7214-43b0-a978-15a5c0bcdce6
+  id: 1
   title: NDL
   url: http://iss.ndl.go.jp/information/feed/
   position: 1
 
 news_feed_00002:
-  id: 09ab79aa-4be7-4daf-8449-18341051a608
+  id: 2
   title: invalid feed
   url: http://example.com/invalid_feed
   position: 2
@@ -14,7 +14,7 @@ news_feed_00002:
 #
 # Table name: news_feeds
 #
-#  id               :uuid             not null, primary key
+#  id               :bigint           not null, primary key
 #  library_group_id :integer          default(1), not null
 #  title            :string
 #  url              :string

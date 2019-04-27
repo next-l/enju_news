@@ -8,10 +8,10 @@ end
 #
 # Table name: news_posts
 #
-#  id               :uuid             not null, primary key
+#  id               :bigint           not null, primary key
 #  title            :text
 #  body             :text
-#  user_id          :bigint(8)        not null
+#  user_id          :bigint           not null
 #  start_date       :datetime
 #  end_date         :datetime
 #  required_role_id :integer          default(1), not null
