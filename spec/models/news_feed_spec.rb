@@ -29,12 +29,12 @@ end
 #
 # Table name: news_feeds
 #
-#  id               :bigint           not null, primary key
+#  id               :integer          not null, primary key
 #  library_group_id :integer          default(1), not null
 #  title            :string
 #  url              :string
 #  body             :text
 #  position         :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  created_at       :datetime
+#  updated_at       :datetime
 #
