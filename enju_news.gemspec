@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sunspot_matchers"
   s.add_development_dependency "vcr", "~> 5.0"
   s.add_development_dependency "webmock"
+  s.add_development_dependency "annotate"
 end
