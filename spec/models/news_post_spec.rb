@@ -8,7 +8,7 @@ end
 #
 # Table name: news_posts
 #
-#  id               :integer          not null, primary key
+#  id               :bigint           not null, primary key
 #  title            :text
 #  body             :text
 #  user_id          :integer
@@ -18,7 +18,7 @@ end
 #  note             :text
 #  position         :integer
 #  draft            :boolean          default(FALSE), not null
-#  created_at       :datetime
-#  updated_at       :datetime
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #  url              :string
 #
