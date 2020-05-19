@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_01_07_161410) do
+ActiveRecord::Schema.define(version: 2020_04_25_074822) do
 
   create_table "accepts", force: :cascade do |t|
     t.integer "basket_id"
@@ -334,6 +334,27 @@ ActiveRecord::Schema.define(version: 2018_01_07_161410) do
     t.index ["user_id"], name: "index_import_requests_on_user_id"
   end
 
+  create_table "item_custom_properties", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "display_name", null: false
+    t.text "note"
+    t.integer "position", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_item_custom_properties_on_name", unique: true
+  end
+
+  create_table "item_custom_values", force: :cascade do |t|
+    t.integer "item_custom_property_id", null: false
+    t.integer "item_id", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_custom_property_id", "item_id"], name: "index_item_custom_values_on_custom_item_property_and_item_id", unique: true
+    t.index ["item_custom_property_id"], name: "index_item_custom_values_on_custom_property_id"
+    t.index ["item_id"], name: "index_item_custom_values_on_item_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "call_number"
     t.string "item_identifier"
@@ -355,6 +376,7 @@ ActiveRecord::Schema.define(version: 2018_01_07_161410) do
     t.string "binding_call_number"
     t.datetime "binded_at"
     t.integer "manifestation_id", null: false
+    t.text "memo"
     t.index ["binding_item_identifier"], name: "index_items_on_binding_item_identifier"
     t.index ["bookstore_id"], name: "index_items_on_bookstore_id"
     t.index ["item_identifier"], name: "index_items_on_item_identifier"
@@ -456,6 +478,27 @@ ActiveRecord::Schema.define(version: 2018_01_07_161410) do
     t.datetime "updated_at"
   end
 
+  create_table "manifestation_custom_properties", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "display_name", null: false
+    t.text "note"
+    t.integer "position", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_manifestation_custom_properties_on_name", unique: true
+  end
+
+  create_table "manifestation_custom_values", force: :cascade do |t|
+    t.integer "manifestation_custom_property_id", null: false
+    t.integer "manifestation_id", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manifestation_custom_property_id", "manifestation_id"], name: "index_manifestation_custom_values_on_property_manifestation", unique: true
+    t.index ["manifestation_custom_property_id"], name: "index_manifestation_custom_values_on_custom_property_id"
+    t.index ["manifestation_id"], name: "index_manifestation_custom_values_on_manifestation_id"
+  end
+
   create_table "manifestation_relationship_types", force: :cascade do |t|
     t.string "name", null: false
     t.text "display_name"
@@ -535,6 +578,7 @@ ActiveRecord::Schema.define(version: 2018_01_07_161410) do
     t.text "publication_place"
     t.text "extent"
     t.text "dimensions"
+    t.text "memo"
     t.index ["access_address"], name: "index_manifestations_on_access_address"
     t.index ["date_of_publication"], name: "index_manifestations_on_date_of_publication"
     t.index ["manifestation_identifier"], name: "index_manifestations_on_manifestation_identifier"
@@ -654,9 +698,7 @@ ActiveRecord::Schema.define(version: 2018_01_07_161410) do
   create_table "picture_files", force: :cascade do |t|
     t.integer "picture_attachable_id"
     t.string "picture_attachable_type"
-    t.string "content_type"
     t.text "title"
-    t.string "thumbnail"
     t.integer "position"
     t.datetime "created_at"
     t.datetime "updated_at"
