@@ -20,11 +20,12 @@ notifications:
     secure: aVw4odRuPfoUjOXbmYfwhYrUuG0BPxmPDmpz6RmUoUKUtUDPWeCw60Xxv+AvGxNuc2usZ32eHW/tKXsQukx5SADVYkSgiAquo4/PErxAdt+P+ilEUT0fzJr8N11mtY0SEOK1iXVp5ucjswsjUYPyQwcddL/hBU2tcSU73yrLv2E=
 sudo: false
 addons:
+  postgresql: "10"
   apt:
-    sources:
-      - google-chrome
     packages:
-      - google-chrome-stable
+    - postgresql-10
+    - postgresql-client-10
+    - chromium-browser
 jdk:
   - openjdk8
 dist: xenial
